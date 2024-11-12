@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div id="{{ tech.id }}">
+  
+
+    <div class="tech_main_div">
+        <h1>{{tech.name }}</h1>
+        <img  src="{{ tech.photo }}" class="tech_image">
+    </div>
+
+    <div class="tech_main_div" >
+        <div class="order-heading" style="text-align: start"></div>
+            
+            <h4>Категория: {{ tech.category }}</h4>
+            <h4>Питание: {{ tech.powercable }}</h4>
+            <h4>Количество на складе: {{ tech.amount }} шт</h4>
+            <h4>Страна производитель: {{ tech.country }}</h4>
+        </div>
+        <div class="mb-5" style="text-align: start; margin-left: 100px;">
+            <h4> Описание: <h4>
+        </div>
+        <div class="mb-6" style="text-align: start; margin-left: 100px;">
+            <h4>{{ tech.description }} </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+

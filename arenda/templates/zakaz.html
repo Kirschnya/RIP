@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+
+{% block content %}
+<div class="container mt-2">
+    <div class="row justify-content-center mb-4">
+        <div class="col-8 text-center">
+            <h2>Аудитория</h2>
+            <input type="text" class="form-control" id="zakaz-name" value="{{ zakaz_name }}" disabled>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for tech in zakaz_items %}
+        <div class="col-2"></div>
+        <div class="col-4">
+            <div class="d-flex">
+                <div class="card mb-3" style="width: 350px;">
+                    <img src="{{tech.photo }}" class="img-fluid rounded-start" style="height: 250px; object-fit: contain;" alt="...">
+                    <div>
+                        <div class="card-body">
+                        <h3 class="card-title">{{ tech.name }}</h3></a>
+                        <div class="card-text text-description">
+                            <h5>Категория: {{ tech.category }}</h5>
+                            <h5>Страна производитель: {{ tech.country }}</h5>
+                            <h5>Количество:<input disabled value="{{ tech.get}}"></h5>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+        {% endfor %}
+    </div>
+
+
+</div>
+{% endblock %}
+
+
+
+

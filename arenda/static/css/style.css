@@ -1,0 +1,231 @@
+body {
+   
+    background-color: white;
+}
+
+.navbar-rule {
+    background-color: white;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.navbar-line {
+    width: 100%;
+    border-width: 3px;
+}
+
+.text-description {
+    text-align: justify;
+    background-color: white;
+    color: #777
+}
+
+.btn-fix {
+    padding: 0 0 0 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.tech-photo {
+    padding-left: 20px;
+    padding-right: 20px;
+  
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}
+
+.tech_image{
+    box-sizing: border-box;
+    display: block;
+    width: 444px;
+    max-width: initial;
+    height: 530px;
+    border: none;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+.tech-description {
+    font-size: 20px;
+}
+
+.basket-badge {
+    background-color: white;
+    color: black;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.main-content-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-width: 938px;
+    background: white;
+  }
+  .brand-container {
+    flex: 0 0 auto;
+    padding-right: 100px;
+    padding-left: 100px;
+  }
+  .header-with-logo-and-menu {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 62px 48px 49px 492px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .main-heading-text-style {
+    flex: 0 0 auto;
+    padding: 0;
+    margin: 0;
+    font: 700 32px Montserrat, sans-serif;
+    color: black;
+  }
+  .svg-container {
+    display: flex;
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+  }
+  .order-details-container1 {
+    flex: 0 0 auto;
+    padding-left: 100px;
+  }
+  .order-details-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    padding-top: 70px;
+    padding-bottom: 32px;
+  }
+  .order-heading {
+    flex: 0 0 auto;
+    padding: 0;
+    margin: 0;
+    font: 700 40px Helvetica, sans-serif; 
+    color: #777
+  }
+  .product-card-container1 {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    padding-right: 23.5px;
+    padding-left: 23.5px;
+    margin-top: 23px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+  }
+  .product-details-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .product-details-card {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .product-card-container {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width: 124px;
+    background: #f0eeed;
+    border-radius: 8.5px;
+  }
+  .vertical-centered-box {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    max-width: initial;
+    height: 124px;
+    border: none;
+    border-radius: 8.5px;
+  }
+  .image-container-styles {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 124px;
+    border: none;
+    border-radius: 8.5px;
+    object-fit: cover;
+  }
+  .image-container {
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    max-width: initial;
+    height: 124px;
+    border: none;
+    object-fit: cover;
+  }
+  .product-details-container1 {
+    flex: 0 0 auto;
+    padding-top: 19.5px;
+    margin-left: 15px;
+  }
+  .product-title-style-modifier {
+    padding: 0;
+    margin: 0;
+    font: 700 20px Montserrat, sans-serif;
+    color: black;
+    white-space: pre-wrap;
+  }
+  .product-info-container {
+    margin-top: 2px;
+  }
+  .product-category-details-style {
+    padding: 0;
+    margin: 0;
+    font: 400 14px Montserrat, sans-serif;
+    color: black;
+    white-space: pre-wrap;
+  }
+  .product-details-snippet {
+    padding: 0;
+    margin: 0;
+    margin-top: 4px;
+    font: 400 14px Montserrat, sans-serif;
+    color: black;
+    white-space: pre-wrap;
+  }
+  .product-details-container:last-child {
+    border-bottom: 0px;
+  }

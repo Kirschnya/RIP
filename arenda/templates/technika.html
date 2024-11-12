@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div id="{{ technika.id }}">
+  
+
+    <div class="technika_main_div">
+        <h1>{{technika.name }}</h1>
+        <img  src="{{ technika.photo }}" class="technika_image">
+    </div>
+
+    <div class="technika_main_div" >
+        <div class="order-heading" style="text-align: start"></div>
+            
+            <h4>Категория: {{ technika.category }}</h4>
+            <h4>Питание: {{ technika.powercable }}</h4>
+            <h4>Количество на складе: {{ technika.amount }} шт</h4>
+            <h4>Страна производитель: {{ technika.country }}</h4>
+        </div>
+        <div class="mb-5" style="text-align: start; margin-left: 100px;">
+            <h4> Описание: <h4>
+        </div>
+        <div class="mb-6" style="text-align: start; margin-left: 100px;">
+            <h4>{{ technika.description }} </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+

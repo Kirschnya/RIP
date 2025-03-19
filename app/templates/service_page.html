@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <main class="container">
+        <h3  class="text-center">Черновой заказ</h3>
+         <div class="form-group">
+            <label class="form-label">ТЗ</label>
+            {% if service.description %}
+                <textarea placeholder="Введите ТЗ" disabled type="text" class="form-control" style="width: 350px; height: 125px; resize: none;">{{ service.description }}</textarea>
+            {% else %}
+                <textarea placeholder="Введите ТЗ" disabled type="text" class="form-control" style="width: 350px; height: 125px; resize: none;"></textarea>
+            {% endif %}
+        </div>
+         <div class="form-group">
+            <label class="form-label">Срок выполнения</label>
+            {% if service.date %}
+                <input placeholder="Введите дату" disabled type="text" class="form-control" style="width: 350px" value="{{ service.date }}">
+            {% else %}
+                <input placeholder="Введите дату" disabled type="text" class="form-control" style="width: 350px">
+            {% endif %}
+        </div>
+        <form method="post" action="{% url 'delete_service' service.id %}">
+            {% csrf_token %}
+                <button class="btn btn-danger delete-draft-service-btn" type="submit">
+                    Удалить
+                </button>
+            </a>
+        </form>
+        <h4 class="text-center">Оборудование</h4>
+        <div class="cards-wrapper d-flex flex-column">
+            {% for device in service.get_devices %}
+                    <div class="card w-100 mb5">
+                         <div class="row g-0">
+                            <div class="col-md-6 d-flex justify-center">
+                                <img src="{{ device.get_image }}">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ device.name }}</h5>
+                                    <p class="card-text">Кабели: {{ device.cables }} шт.</p>
+                                    <div class="form-group">
+                                        <label class="form-label">Комментарий</label>
+                                        {% if device.comment %}
+                                            <textarea placeholder="Введите комментарий" disabled class="form-control" style="width: 100%; height: 125px; resize: none;">{{ device.comment }}</textarea>
+                                        {% else %}
+                                            <textarea placeholder="Введите комментарий" disabled class="form-control" style="width: 100%; height: 125px; resize: none;"></textarea>
+                                        {% endif %}
+                                    </div>
+                                    <a href="/devices/{{ device.id }}/" class="btn btn-primary" style="width: 100px">
+                                        Открыть
+                                    </a>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock content %}

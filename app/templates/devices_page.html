@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main class="container">
+        <div class="row d-flex justify-content-between">
+            <div class="col md-8">
+                <form class="search-bar" action="/" method="GET">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="Введите название" name="device_name" value="{{ device_name }}">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="search-btn btn btn-primary w-100">Поиск</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+             {% include "bin.html" %}
+        </div>
+        <div class="cards-wrapper">
+            {% for device in devices %}
+                <div class="card">
+                    <img src="{{ device.get_image }}" class="device-preview" alt=""/>
+                    <div class="card-body" >
+                        <div class="card-info">
+                            <h5 class="card-title">{{ device.name }}</h5>
+                            <p class="card-text">Кабели: {{ device.cables }} шт.</p>
+                        </div>
+                        <div class="row card-btns">
+                            <div class="col d-flex justify-content-center flex-grow-1">
+                                <a href="/devices/{{ device.id }}" class="btn btn-primary">
+                                    Открыть
+                                </a>
+                            </div>
+                            <form method="post" action="{% url 'add_device_to_draft_service' device.id %}" class="col d-flex justify-content-center">
+                                {% csrf_token %}
+                                <input type="hidden" name="device_name" value="{{ device_name }}">
+                                <button class="add-btn btn btn-secondary" type="submit">
+                                    Добавить
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock content %}
+

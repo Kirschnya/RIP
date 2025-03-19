@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <main class="container">
+
+        <div class="row">
+            <div class="col-6">
+                <img src="{{ device.get_image }}" class="device-image" alt=""/>
+            </div>
+            <div class="col-6 d-flex flex-md-column gap-md-3">
+
+                <h1>{{ device.name }}</h1>
+
+                <span>Описание: {{ device.description }}</span>
+
+                <span>Кабели: {{ device.cables }} шт.</span>
+
+                <a href="/" class="return-btn btn btn-primary my-4 w-25">
+                    Назад
+                </a>
+
+            </div>
+        </div>
+
+    </main>
+{% endblock content %}

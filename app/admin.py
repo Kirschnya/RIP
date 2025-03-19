@@ -1,6 +1,7 @@
 from django.contrib import admin
-from app.models import *
 
-admin.site.register(Devices)
+from .models import *
+
+admin.site.register(Device)
 admin.site.register(Service)
-admin.site.register(DevicesService)
+admin.site.register(DeviceService)

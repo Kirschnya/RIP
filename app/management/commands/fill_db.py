@@ -19,28 +19,28 @@ def add_users():
 
 
 def add_devices():
-    Devices.objects.create(
+    Device.objects.create(
         name="Проектор ACER",
         description="Позволяет выводить изображение с ноутубка",
         cables=3,
         image="6.png"
     )
 
-    Devices.objects.create(
+    Device.objects.create(
         name="Микрофон СОЮЗ",
         description="Захватывает звук лектора. Для самых шумных аудиторий.",
         cables=2,
         image="2.png",
     )
 
-    Devices.objects.create(
+    Device.objects.create(
         name="Микрофон SVEN5",
         description="Простой и удобный в использовании. Портативный.",
         cables=1,
         image="1.png"
     )
 
-    Devices.objects.create(
+    Device.objects.create(
         name="Динамики SVEN MK200",
         description="Позволяют выводить звук с ноутбука",
         cables=2,
@@ -48,7 +48,7 @@ def add_devices():
 
     )
 
-    Devices.objects.create(
+    Device.objects.create(
         name="Ноутубк",
         description="Мощный и портативный. Предустановлена Alt Linux.",
         cables=1,
@@ -56,7 +56,7 @@ def add_devices():
  
     )
 
-    Devices.objects.create(
+    Device.objects.create(
         name="Проектор BENQ",
         description="Работает без провода, благодаря технологии Wi-Fi Direct.",
         cables=1,
@@ -83,7 +83,7 @@ def add_services():
         print("Заявки не могут быть добавлены. Сначала добавьте пользователей с помощью команды add_users")
         return
 
-    devices = Devices.objects.all()
+    devices = Device.objects.all()
 
     for _ in range(30):
         status = random.randint(2, 5)
@@ -113,7 +113,7 @@ def add_service(status, devices, users, moderators):
     service.date = random_date()
 
     for device in random.sample(list(devices), 3):
-        item = DevicesService(
+        item = DeviceService(
             service=service,
             device=device,
             comment="Развернутый комментарий"

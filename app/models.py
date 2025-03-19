@@ -1,32 +1,29 @@
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin, User
 from django.db import models
-from django.utils import timezone
-
-from django.contrib.auth.models import User
 
 
-class Devices(models.Model):
+class Device(models.Model):
     STATUS_CHOICES = (
         (1, 'Действует'),
         (2, 'Удалена'),
     )
 
-    name = models.CharField(max_length=100, verbose_name="Название", blank=True)
+    name = models.CharField(max_length=100, verbose_name="Название")
+    description = models.TextField(max_length=500, verbose_name="Описание",)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1, verbose_name="Статус")
-    image = models.ImageField(default="default.png", blank=True)
-    description = models.TextField(verbose_name="Описание", blank=True)
+    image = models.ImageField(verbose_name="Фото", blank=True, null=True)
 
-    cables = models.IntegerField(blank=True)
-
-    def get_image(self):
-        return self.image.url.replace("minio", "localhost", 1)
+    cables = models.IntegerField(verbose_name="Кабели")
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name = "Оборудование"
-        verbose_name_plural = "Оборудование"
+        verbose_name = "оборудование"
+        verbose_name_plural = "оборудование"
         db_table = "devices"
+        ordering = ('pk', )
 
 
 class Service(models.Model):
@@ -39,36 +36,30 @@ class Service(models.Model):
     )
 
     status = models.IntegerField(choices=STATUS_CHOICES, default=1, verbose_name="Статус")
-    date_created = models.DateTimeField(default=timezone.now(), verbose_name="Дата создания")
+    date_created = models.DateTimeField(verbose_name="Дата создания", blank=True, null=True)
     date_formation = models.DateTimeField(verbose_name="Дата формирования", blank=True, null=True)
     date_complete = models.DateTimeField(verbose_name="Дата завершения", blank=True, null=True)
 
-    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="Пользователь", null=True, related_name='owner')
-    moderator = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="Сотрудник", null=True, related_name='moderator')
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="Создатель", related_name='owner', null=True)
+    moderator = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="Сотрудник", related_name='moderator', blank=True,  null=True)
 
-    description = models.TextField(blank=True, null=True)
+    tz = models.TextField(blank=True, null=True)
     date = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return "заказ №" + str(self.pk)
 
-    def get_devices(self):
-        return [
-            setattr(item.device, "comment", item.comment) or item.device
-            for item in DevicesService.objects.filter(service=self)
-        ]
-
     class Meta:
         verbose_name = "заказ"
         verbose_name_plural = "заказы"
-        ordering = ('-date_formation',)
         db_table = "services"
+        ordering = ('-date_formation', )
 
 
-class DevicesService(models.Model):
-    device = models.ForeignKey(Devices, models.DO_NOTHING, blank=True, null=True)
-    service = models.ForeignKey(Service, models.DO_NOTHING, blank=True, null=True)
-    comment = models.CharField(blank=True, null=True)
+class DeviceService(models.Model):
+    device = models.ForeignKey(Device, on_delete=models.DO_NOTHING, blank=True, null=True)
+    service = models.ForeignKey(Service, on_delete=models.DO_NOTHING, blank=True, null=True)
+    comment = models.TextField(default="Комментарий")
 
     def __str__(self):
         return "м-м №" + str(self.pk)
@@ -77,4 +68,7 @@ class DevicesService(models.Model):
         verbose_name = "м-м"
         verbose_name_plural = "м-м"
         db_table = "device_service"
-        unique_together = ('device', 'service')
+        ordering = ('pk', )
+        constraints = [
+            models.UniqueConstraint(fields=['device', 'service'], name="device_service_constraint")
+        ]
